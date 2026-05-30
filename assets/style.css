@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700;800&display=swap');
+
+:root {
+    --bg-primary: #050511;
+    --bg-secondary: rgba(13, 14, 28, 0.7);
+    --text-main: #F8FAFC;
+    --text-muted: #94A3B8;
+    --accent-cyan: #00FFEA;
+    --accent-purple: #F012BE;
+    --accent-blue: #3B82F6;
+    --glow-cyan: rgba(0, 255, 234, 0.4);
+    --glow-purple: rgba(240, 18, 190, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+/* Base styles override */
+.stApp {
+    background-color: var(--bg-primary);
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(0, 255, 234, 0.04), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(240, 18, 190, 0.04), transparent 25%),
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+}
+
+h1, h2, h3, h4, p, span, div, li, a {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-main);
+}
+
+code, pre, .terminal-window {
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: var(--bg-secondary);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Global Streamlit Button Override */
+div[data-testid="stButton"] button {
+    background: linear-gradient(135deg, rgba(0, 255, 234, 0.1), rgba(59, 130, 246, 0.1)) !important;
+    border: 1px solid var(--accent-cyan) !important;
+    color: var(--accent-cyan) !important;
+    border-radius: 8px !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    backdrop-filter: blur(5px);
+}
+
+div[data-testid="stButton"] button:hover {
+    background: var(--accent-cyan) !important;
+    color: var(--bg-primary) !important;
+    box-shadow: 0 0 20px var(--glow-cyan) !important;
+    transform: translateY(-2px);
+}
+
+div[data-testid="stButton"] button[kind="primary"] {
+    background: linear-gradient(135deg, var(--accent-purple) 0%, #B00B8C 100%) !important;
+    border: 1px solid var(--accent-purple) !important;
+    color: white !important;
+}
+
+div[data-testid="stButton"] button[kind="primary"]:hover {
+    box-shadow: 0 0 20px var(--glow-purple) !important;
+    transform: translateY(-2px);
+}
+
+/* Sidebar Customization */
+[data-testid="stSidebar"] {
+    background: rgba(5, 5, 17, 0.85) !important;
+    backdrop-filter: blur(20px);
+    border-right: 1px solid var(--glass-border);
+}
+
+[data-testid="stSidebar"] div[data-testid="stButton"] button {
+    background: transparent !important;
+    border: none !important;
+    color: var(--text-muted) !important;
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+[data-testid="stSidebar"] div[data-testid="stButton"] button:hover {
+    color: var(--accent-cyan) !important;
+    background: linear-gradient(90deg, rgba(0,255,234,0.1) 0%, transparent 100%) !important;
+    box-shadow: none !important;
+    border-left: 3px solid var(--accent-cyan) !important;
+    border-radius: 0 !important;
+    transform: translateX(5px);
+}
+
+hr {
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* --- ANIMATIONS --- */
+.brain-icon {
+    font-size: 4.5rem;
+    display: inline-block;
+    filter: drop-shadow(0px 0px 25px var(--glow-purple));
+    animation: brainFloat 4s ease-in-out infinite;
+}
+
+@keyframes brainFloat {
+    0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+    50% { transform: translateY(-15px) scale(1.05) rotate(5deg); }
+}
+
+@keyframes floatSymbol {
+    0% { transform: translateY(0px) rotate(0deg) scale(1); }
+    50% { transform: translateY(-30px) rotate(8deg) scale(1.1); }
+    100% { transform: translateY(0px) rotate(0deg) scale(1); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 15px var(--glow-cyan); }
+    50% { box-shadow: 0 0 35px var(--glow-cyan); }
+}
+
+/* Floating Code Symbols */
+.code-symbol {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 900;
+    user-select: none;
+    z-index: 0;
+    animation: floatSymbol 8s ease-in-out infinite;
+}
+
+.sym-1 { top: 15%; left: 15%; font-size: 4rem; animation-delay: 0s; color: rgba(0, 255, 234, 0.15); }
+.sym-2 { top: 65%; left: 10%; font-size: 3rem; animation-delay: 1.5s; color: rgba(240, 18, 190, 0.15); }
+.sym-3 { top: 20%; right: 20%; font-size: 5rem; animation-delay: 3s; color: rgba(59, 130, 246, 0.15); }
+.sym-4 { top: 75%; right: 15%; font-size: 4rem; animation-delay: 4.5s; color: rgba(16, 185, 129, 0.15); }
+.sym-5 { top: 40%; left: 5%; font-size: 2.5rem; animation-delay: 2s; color: rgba(245, 158, 11, 0.15); }
+.sym-6 { top: 50%; right: 5%; font-size: 3.5rem; animation-delay: 5s; color: rgba(0, 255, 234, 0.15); }
+
+/* Login specific styles extracted and improved */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-card {
+    background: var(--bg-secondary);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 2px solid var(--accent-cyan);
+    border-bottom: 2px solid var(--accent-purple);
+    border-radius: 20px;
+    padding: 3.5rem;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(0,255,234,0.1);
+    position: relative;
+    z-index: 10;
+    max-width: 550px;
+    width: 100%;
+}
+
+.sage-text {
+    font-size: 4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    background: linear-gradient(to right, var(--accent-cyan), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(0,255,234,0.2);
+    letter-spacing: -2px;
+}
+
+.feature-pills {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+
+.pill {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-main) !important;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+}
+
+.pill:hover {
+    background: rgba(0, 255, 234, 0.1);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 15px var(--glow-cyan);
+    transform: translateY(-2px);
+}
+
+.login-btn {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(90deg, var(--accent-cyan), #00b3a4);
+    color: var(--bg-primary) !important;
+    padding: 16px;
+    border-radius: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: none;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    box-shadow: 0 10px 25px var(--glow-cyan);
+    transform: translateY(-3px);
+    filter: brightness(1.1);
+}
+
+/* Onboarding Overrides */
+.ob-header {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #FFF, var(--text-muted));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.ob-sub {
+    text-align: center;
+    color: var(--accent-cyan);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    text-shadow: 0 0 15px var(--glow-cyan);
+    text-transform: uppercase;
+}
+
+.ob-card {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    border-radius: 16px !important;
+    padding: 30px !important;
+    backdrop-filter: blur(10px);
+}
+
+.ob-card:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.c-cyan:hover { border-color: var(--accent-cyan) !important; box-shadow: 0 0 25px var(--glow-cyan) !important; transform: scale(1.02); }
+.c-purple:hover { border-color: var(--accent-purple) !important; box-shadow: 0 0 25px var(--glow-purple) !important; transform: scale(1.02); }
+.c-blue:hover { border-color: var(--accent-blue) !important; box-shadow: 0 0 25px rgba(59,130,246,0.4) !important; transform: scale(1.02); }

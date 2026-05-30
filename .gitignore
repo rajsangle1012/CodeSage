@@ -1,0 +1,17 @@
+# Ignore environment variables and secrets (CRITICAL)
+.env
+.verifier_temp
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore IDE / Editor configs
+.cursor/
+.vscode/
+.idea/
+
+# Ignore virtual environments
+venv/
+env/
+.venv/
